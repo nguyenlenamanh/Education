@@ -17,17 +17,56 @@ namespace Education_MVC.Models
             return userIdentity;
         }
     }
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("IdentityDataConnection", throwIfV1Schema: false)
         {
         }
-
+        static ApplicationDbContext()
+        {
+            Database.SetInitializer<ApplicationDbContext>(new DBContextInit());
+        }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+    }
+    public class ApplicationRole : IdentityRole
+    {
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string name) : base(name) { }
+    }
+    public class DBContextInit : CreateDatabaseIfNotExists<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext context)
+        {
+            PerformInitialSetup(context);
+            base.Seed(context);
+        }
+        public void PerformInitialSetup(ApplicationDbContext context)
+        {
+            ApplicationUserManager userMgr = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
+            ApplicationRoleManager roleMgr = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context));
+            string roleName = "Administrators";
+            string userName = "Admin";
+            string password = "123456";
+            string email = "admin@example.com";
+            if (!roleMgr.RoleExists(roleName))
+            {
+                roleMgr.Create(new ApplicationRole(roleName));
+            }
+            ApplicationUser user = userMgr.FindByName(userName);
+            if (user == null)
+            {
+                userMgr.Create(new ApplicationUser { UserName = userName, Email = email },
+                password);
+                user = userMgr.FindByName(userName);
+            }
+            if (!userMgr.IsInRole(user.Id, roleName))
+            {
+                userMgr.AddToRole(user.Id, roleName);
+            }
         }
     }
 }
