@@ -14,5 +14,8 @@ namespace Education_MVC.Models
         public string SDT { get; set; }
         public string Email { get; set; }
         public List<ThanhToan> ThanhToans { get; set; }
+        public virtual List<Chat> Chats { get; set; }
+
+        public virtual List<DanhGiaCuaNguoiHoc> DanhGias { get; set; }
     }
 }

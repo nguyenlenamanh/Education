@@ -15,5 +15,6 @@ namespace Education_MVC.Models
         public string Email { get; set; }
         public string DiaChi { get; set; }
         public virtual List<LopHoc> LopHocs { get; set; }
+       
     }
 }

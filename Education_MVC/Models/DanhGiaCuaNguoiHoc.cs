@@ -7,18 +7,13 @@ using System.Web;
 
 namespace Education_MVC.Models
 {
-    public class Chat
+    public class DanhGiaCuaNguoiHoc
     {
         [Key]
-        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
         public string MaNH { get; set; }
-        [Key]
-        [Column(Order = 2)]
-        public int MaLH { get; set; }
-        public long Hash { get; set; }
-
-        public virtual NguoiHoc NguoiHoc { get; set; }
-
-        public virtual LopHoc  LopHoc { get; set; }
+        public string DanhGia { get; set; }
+        public virtual NguoiHoc  NguoiHoc { get; set; }
     }
 }

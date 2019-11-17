@@ -19,5 +19,6 @@ namespace Education_MVC.Models
         public string Img { get; set; }
         public virtual GiaSu GiaSu { get; set; }
         public virtual List<ThanhToan> ThanhToans { get; set; }
+        public virtual List<Chat> Chats { get; set; }
     }
 }

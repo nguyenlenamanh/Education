@@ -17,7 +17,8 @@ namespace Education_MVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        ApplicationDbContext dbIdentity;
+        GiaSuOnlineDB dbGiaSu;
         public AccountController()
         {
         }
@@ -151,19 +152,35 @@ namespace Education_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    dbIdentity = new ApplicationDbContext();
+                    dbGiaSu = new GiaSuOnlineDB();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    string id = dbIdentity.Users.SingleOrDefault(x => x.UserName == model.Email).Id;
+                    User u = new Models.User()
+                    {
+                        id = id,
+                        balance = 0
+                    };
+                    dbGiaSu.Users.Add(u);
+                    NguoiHoc nh = new NguoiHoc()
+                    {
+                        MaNH = id,
+                        TenNH = model.Email,
+                    };
+                    dbGiaSu.NguoiHocs.Add(nh);
+                    dbGiaSu.SaveChanges();
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "GiaSuOnline");
                 }
                 AddErrors(result);
             }

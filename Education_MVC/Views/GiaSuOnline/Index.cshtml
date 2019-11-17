@@ -1,8 +1,38 @@
-﻿
+﻿@model IEnumerable<Education_MVC.Models.LopHoc>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 
-<h2>Test</h2>
+<div class="colorlib-classes">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 colorlib-heading center-heading text-center animate-box fadeInUp animated-fast">
+                <h1 class="heading-big">Các khóa học của chúng tôi</h1>
+                <h2>Các khóa học của chúng tôi</h2>
+            </div>
+        </div>       
+       
+        @foreach (var i in Model)
+        {
+            <div class="col-md-4 animate-box fadeInUp animated-fast">
+                <div class="classes">
+                    <div class="classes-img" style="background-image: url(../../../Content/images/classes-1.jpg);">
+                    </div>
+                    <div class="wrap">
+                        <div class="desc">
+                            <span class="teacher">@i.GiaSu.TenGS</span>
+                            <h3><a href="#">@i.TenLH</a></h3>
+                        </div>
+                        <div class="pricing">
+                            <p><span class="price">@i.Gia VNĐ</span><span class="more"><a href="/GiaSuOnline/ThanhToan/@i.MaLH">Đăng ký</a></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+           
+    </div>   
+</div>
+@Html.Action("DanhGiaCuaNguoiHoc")
 

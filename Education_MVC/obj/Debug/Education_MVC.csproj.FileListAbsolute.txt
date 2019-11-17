@@ -165,6 +165,6 @@ C:\Users\tn\Desktop\Education\Education_MVC\bin\Microsoft.Owin.Security.OAuth.xm
 C:\Users\tn\Desktop\Education\Education_MVC\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\tn\Desktop\Education\Education_MVC\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\tn\Desktop\Education\Education_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.csprojResolveAssemblyReference.cache
 C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.dll
 C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.pdb
+C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.csprojResolveAssemblyReference.cache

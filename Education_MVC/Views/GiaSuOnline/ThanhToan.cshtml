@@ -1,0 +1,107 @@
+﻿@model Education_MVC.Models.LopHoc
+
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="colorlib-classes">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row row-pb-lg">
+                    <div class="col-md-12 animate-box fadeInUp animated-fast">
+                        <div class="classes class-single">
+                            <div class="classes-img"  style="background-image:url(../../../Content/images/classes-1.jpg);">
+                            </div>
+                            <div class="desc desc2">
+                                <h3><a href="#">@Model.TenLH</a></h3>
+                                <p style="font-family:'Times New Roman'";>@Model.MoTa</p>
+                                <p style="font-family:'Times New Roman'";>Người dạy: @Model.GiaSu.TenGS</p>                              
+                                <p><Button class="btn btn-primary btn-outline btn-lg" onclick="Pay(@Model.MaLH)">Thanh toán</Button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-pb-lg animate-box fadeInUp animated-fast">
+                    <div class="col-md-12">
+                        <h2 class="colorlib-heading-2">Các đánh giá của học viên</h2>
+                        <div class="review">
+                            @*<div class="user-img"  style="background-image:@Href("~/Content/images/class-1.jpg")></div>
+                            <div class="desc">
+                                <h4>
+                                    <span class="text-left">Jacob Webb</span>
+                                    <span class="text-right">24 March 2018</span>
+                                </h4>
+                                <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                                <p class="star">
+                                    <span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="user-img" style="background-image: url(images/person2.jpg)"></div>
+                            <div class="desc">
+                                <h4>
+                                    <span class="text-left">Jacob Webb</span>
+                                    <span class="text-right">24 March 2018</span>
+                                </h4>
+                                <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                                <p class="star">
+                                    <span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="user-img" style="background-image: url(images/person3.jpg)"></div>
+                            <div class="desc">
+                                <h4>
+                                    <span class="text-left">Jacob Webb</span>
+                                    <span class="text-right">24 March 2018</span>
+                                </h4>
+                                <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+                                <p class="star">
+                                    <span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+                                </p>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="colorlib-heading-2">Đánh giá của bạn</h2>
+                        <form action="#">
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <!-- <label for="fname">First Name</label> -->
+                                    <input type="text" id="fname" class="form-control" placeholder="Họ và tên">
+                                </div>                            
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <!-- <label for="email">Email</label> -->
+                                    <input type="text" id="email" class="form-control" placeholder="Địa chỉ email">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <!-- <label for="message">Message</label> -->
+                                    <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Đánh giá của bạn"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Gửi đánh giá" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+

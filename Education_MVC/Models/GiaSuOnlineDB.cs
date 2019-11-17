@@ -16,5 +16,7 @@ namespace Education_MVC.Models
         public DbSet<User> Users { get; set; }
 
         public DbSet<Chat> Chats { get; set; }
+
+        public DbSet<DanhGiaCuaNguoiHoc> DanhGiaNguoiHocs { get; set; }
     }
 }

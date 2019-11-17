@@ -213,6 +213,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chat.cs" />
+    <Compile Include="Models\DanhGiaCuaNguoiHoc.cs" />
     <Compile Include="Models\DataInitialGS.cs" />
     <Compile Include="Models\GiaSu.cs" />
     <Compile Include="Models\GiaSuOnlineDB.cs" />
@@ -283,6 +284,7 @@
     <Content Include="Content\js\magnific-popup-options.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\modernizr-2.6.2.min.js" />
+    <Content Include="Content\js\myScript.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Content\js\respond.min.js" />
     <Content Include="favicon.ico" />
@@ -1354,6 +1356,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Views\GiaSuOnline\Index.cshtml" />
+    <Content Include="Views\GiaSuOnline\DanhGiaCuaNguoiHoc.cshtml" />
+    <Content Include="Views\GiaSuOnline\ThanhToan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
