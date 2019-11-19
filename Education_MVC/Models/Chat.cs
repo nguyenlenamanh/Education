@@ -9,13 +9,11 @@ namespace Education_MVC.Models
 {
     public class Chat
     {
-        [Key]
-        [Column(Order = 1)]
-        public string MaNH { get; set; }
-        [Key]
-        [Column(Order = 2)]
-        public int MaLH { get; set; }
+        public int ChatID { get; set; }
+
         public long Hash { get; set; }
+        public string MaNH { get; set; }
+        public int MaLH { get; set; }
 
         public virtual NguoiHoc NguoiHoc { get; set; }
 

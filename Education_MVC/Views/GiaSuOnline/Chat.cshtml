@@ -1,0 +1,324 @@
+﻿@using Education_MVC.Models;
+
+@model List<ChatDetail>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Inbox</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="~/Content/css/font-face.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="~/Content/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="~/Content/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="~/Content/css/theme.css" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="main-content" style="padding-top: 10px; padding-bottom: 0px;">
+        <div class="section__content section__content--p10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="au-message-list" style="height: 72vh;">
+                            <div class="au-message__item unread" onclick="changeChat(@((ViewBag.CurrentChat as DisplayChatUser).Hash))">
+                                @if (ViewBag.CurrentChat != null)
+                                {
+                                    <div class="au-message__item-inner">
+                                        <div class="au-message__item-text">
+                                            <div class="avatar-wrap">
+                                                <div class="avatar">
+                                                    <img src="~/Content/images/avatar.jpg" alt="John Smith">
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                <h5 class="name">@((ViewBag.CurrentChat as DisplayChatUser).Name)</h5>
+                                                <p>@((ViewBag.CurrentChat as DisplayChatUser).LastestContent)</p>
+                                            </div>
+                                        </div>
+                                        <div class="au-message__item-time">
+                                            <span>@((ViewBag.CurrentChat as DisplayChatUser).LastestChatDate)</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            @if (ViewBag.ListChats != null)
+                            {
+                                foreach (DisplayChatUser p in (ViewBag.ListChats as List<DisplayChatUser>))
+                                {
+                                    <div class="au-message__item" onclick="changeChat(@p.Hash)">
+                                        <div class="au-message__item-inner">
+                                            <div class="au-message__item-text">
+                                                <div class="avatar-wrap online">
+                                                    <div class="avatar">
+                                                        <img src="~/Content/images/avatar.jpg" alt="Nicholas Martinez">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <h5 class="name">@p.Name</h5>
+                                                    <p>@p.LastestContent</p>
+                                                </div>
+                                            </div>
+                                            <div class="au-message__item-time">
+                                                <span>@p.LastestChatDate</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                          <!--
+                               <div class="au-message__item">
+                                <div class="au-message__item-inner">
+                                    <div class="au-message__item-text">
+                                        <div class="avatar-wrap online">
+                                            <div class="avatar">
+                                                <img src="~/Content/images/icon/avatar-04.jpg" alt="Michelle Sims">
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <h5 class="name">Michelle Sims</h5>
+                                            <p>Lorem ipsum dolor sit amet</p>
+                                        </div>
+                                    </div>
+                                    <div class="au-message__item-time">
+                                        <span>Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="au-message__item">
+                                <div class="au-message__item-inner">
+                                    <div class="au-message__item-text">
+                                        <div class="avatar-wrap">
+                                            <div class="avatar">
+                                                <img src="~/Content/images/icon/avatar-05.jpg" alt="Michelle Sims">
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <h5 class="name">Michelle Sims</h5>
+                                            <p>Purus feugiat finibus</p>
+                                        </div>
+                                    </div>
+                                    <div class="au-message__item-time">
+                                        <span>Sunday</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="au-message__item js-load-item" style="display: none;">
+                                <div class="au-message__item-inner">
+                                    <div class="au-message__item-text">
+                                        <div class="avatar-wrap online">
+                                            <div class="avatar">
+                                                <img src="~/Content/images/icon/avatar-04.jpg" alt="Michelle Sims">
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <h5 class="name">Michelle Sims</h5>
+                                            <p>Lorem ipsum dolor sit amet</p>
+                                        </div>
+                                    </div>
+                                    <div class="au-message__item-time">
+                                        <span>Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="au-message__item js-load-item" style="display: none;">
+                                <div class="au-message__item-inner">
+                                    <div class="au-message__item-text">
+                                        <div class="avatar-wrap">
+                                            <div class="avatar">
+                                                <img src="~/Content/images/icon/avatar-05.jpg" alt="Michelle Sims">
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <h5 class="name">Michelle Sims</h5>
+                                            <p>Purus feugiat finibus</p>
+                                        </div>
+                                    </div>
+                                    <div class="au-message__item-time">
+                                        <span>Sunday</span>
+                                    </div>
+                                </div>
+                            </div>
+                          --> 
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40 au-card--border">
+                            <div class="au-inbox-wrap">
+                                <div class="au-chat au-chat--border">
+                                    <div class="au-chat__title">
+                                        <div class="au-chat-info">
+                                            <div class="avatar-wrap online">
+                                                <div class="avatar avatar--small">
+                                                    <img src="~/Content/images/avatar.jpg" alt="John Smith">
+                                                </div>
+                                            </div>
+                                            <span class="nick">
+                                                <a href="#">@ViewBag.Name</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="au-chat__content au-chat__content2 js-scrollbar5" id="chat" style="height: 72vh;">
+                                       <!-- <div class="recei-mess-wrap">
+                                            <span class="mess-time">12 Min ago</span>
+                                            <div class="recei-mess__inner">
+                                                <div class="avatar avatar--tiny">
+                                                    <img src="~/Content/images/icon/avatar-02.jpg" alt="John Smith">
+                                                </div>
+                                                <div class="recei-mess-list">
+                                                    <div class="recei-mess">Lorem ipsum dolor sit amet elit</div>
+                                                    <div class="recei-mess">Donec tempor viverra</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="send-mess-wrap">
+                                            <span class="mess-time">30 Sec ago</span>
+                                            <div class="send-mess__inner">
+                                                <div class="send-mess-list">
+                                                    <div class="send-mess">Lorem ipsum dolor sit amet elit</div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+                                        @foreach (var row in Model)
+                                        {
+                                            if (row.ChatUser == ViewBag.UserID)
+                                            {
+                                                <div class="send-mess-wrap"><div class="send-mess__inner"><div class="send-mess-list"><div class="send-mess"> @row.Content </div></div></div></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="recei-mess__inner"><div class="recei-mess"> @row.Content </div></div>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="au-chat-textfield" style="padding-top: 50px!important; padding-bottom: 40px;">
+                                        <div class="au-form-icon">
+                                            <input id="message" class="au-input au-input--full au-input--h65" type="text" placeholder="Type a message">
+                                            <button id="sendmessage" class="au-input-icon">
+                                                <i class="zmdi zmdi-mail-send"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="userID" value="@ViewBag.UserID" />
+    <input type="hidden" id="classID" value="@ViewBag.ClassID" />
+    <input type="hidden" id="chatwithID" value="@ViewBag.ChatWithID" />
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <!--Reference the autogenerated SignalR hub script. -->
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+            $(function () {
+                // Reference the auto-generated proxy for the hub.
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call back to display messages.
+            chat.client.addNewMessageToPage = function (name, message, sendto) {
+                // Add the message to the page.
+                if (name == $('#userID').val()) {
+                    $('#chat').append('<div class="send-mess-wrap"><div class="send-mess__inner"><div class="send-mess-list"><div class="send-mess">' + message + '</div></div></div></div>');
+                }
+                else if (name == $('#chatwithID').val() && sendto == $('#userID').val()) {
+                    $('#chat').append('<div class="recei-mess__inner"><div class="recei-mess">' + message + '</div></div>');
+                }
+            };
+
+            // Get the user name and store it to prepend to messages.
+           // $('#displayname').val(makeid(5).toString());
+           // alert($('#userID').val());
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.send($('#userID').val(), $('#classID').val(), $('#message').val(), $('#chatwithID').val());
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+            });
+        });
+        // This optional function html-encodes messages for display in the page.
+            function makeid(length) {
+                var result = '';
+                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+
+            function changeChat(hash) {
+                location.replace("http://localhost:57768/GiaSuOnline/Chat/" + hash);
+            }
+    </script>
+
+    <!-- Jquery JS-->
+    <!-- Bootstrap JS-->
+    <script src="~/Content/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="~/Content/vendor/slick/slick.min.js">
+    </script>
+    <script src="~/Content/vendor/wow/wow.min.js"></script>
+    <script src="~/Content/vendor/animsition/animsition.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="~/Content/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/Content/vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="~/Content/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="~/Content/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/Content/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="~/Content/vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="~/Content/js/main2.js"></script>
+
+   
+
+</body>
+
+</html>
+<!-- end document-->

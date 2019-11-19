@@ -49,23 +49,26 @@ namespace Education_MVC.Models
             ApplicationUserManager userMgr = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             ApplicationRoleManager roleMgr = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context));
             string roleName = "Administrators";
+            string roleName1 = "GS";
             string userName = "Admin";
             string password = "123456";
             string email = "admin@example.com";
             if (!roleMgr.RoleExists(roleName))
             {
                 roleMgr.Create(new ApplicationRole(roleName));
+                roleMgr.Create(new ApplicationRole(roleName1));
             }
             ApplicationUser user = userMgr.FindByName(userName);
             if (user == null)
             {
-                userMgr.Create(new ApplicationUser { UserName = userName, Email = email },
+                userMgr.Create(new ApplicationUser { UserName = email, Email = email },
                 password);
-                user = userMgr.FindByName(userName);
+                user = userMgr.FindByName(email);
             }
             if (!userMgr.IsInRole(user.Id, roleName))
             {
                 userMgr.AddToRole(user.Id, roleName);
+                userMgr.AddToRole(user.Id, roleName1);
             }
         }
     }

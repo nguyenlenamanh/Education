@@ -213,8 +213,10 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chat.cs" />
+    <Compile Include="Models\ChatDetail.cs" />
     <Compile Include="Models\DanhGiaCuaNguoiHoc.cs" />
     <Compile Include="Models\DataInitialGS.cs" />
+    <Compile Include="Models\DisplayChatUser.cs" />
     <Compile Include="Models\GiaSu.cs" />
     <Compile Include="Models\GiaSuOnlineDB.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -224,6 +226,7 @@
     <Compile Include="Models\ThanhToan.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="signalr\hubs\ChatHub.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -232,19 +235,24 @@
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\font-face.css" />
     <Content Include="Content\css\icomoon.css" />
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\owl.theme.default.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\theme.css" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\flaticon\backup.txt" />
     <Content Include="Content\fonts\flaticon\font\flaticon.css" />
     <Content Include="Content\fonts\flaticon\font\flaticon.html" />
     <Content Include="Content\fonts\flaticon\font\Flaticon.svg" />
     <Content Include="Content\fonts\icomoon\icomoon.svg" />
+    <Content Include="Content\images\avatar.jpg" />
     <Content Include="Content\images\about-img-1.jpg" />
     <Content Include="Content\images\about-img-2.jpg" />
+    <Content Include="Content\images\bg-title-01.jpg" />
+    <Content Include="Content\images\bg-title-02.jpg" />
     <Content Include="Content\images\blog-1.jpg" />
     <Content Include="Content\images\blog-2.jpg" />
     <Content Include="Content\images\blog-3.jpg" />
@@ -261,6 +269,18 @@
     <Content Include="Content\images\classes-8.jpg" />
     <Content Include="Content\images\classes-9.jpg" />
     <Content Include="Content\images\event.jpg" />
+    <Content Include="Content\images\icon\avatar-01.jpg" />
+    <Content Include="Content\images\icon\avatar-02.jpg" />
+    <Content Include="Content\images\icon\avatar-03.jpg" />
+    <Content Include="Content\images\icon\avatar-04.jpg" />
+    <Content Include="Content\images\icon\avatar-05.jpg" />
+    <Content Include="Content\images\icon\avatar-06.jpg" />
+    <Content Include="Content\images\icon\avatar-big-01.jpg" />
+    <Content Include="Content\images\icon\logo-blue.png" />
+    <Content Include="Content\images\icon\logo-mini.png" />
+    <Content Include="Content\images\icon\logo-white.png" />
+    <Content Include="Content\images\icon\logo.png" />
+    <Content Include="Content\images\icon\Untitled-1.jpg" />
     <Content Include="Content\images\img_bg_1.jpg" />
     <Content Include="Content\images\img_bg_2.jpg" />
     <Content Include="Content\images\img_bg_3.jpg" />
@@ -283,6 +303,7 @@
     <Content Include="Content\js\jquery.waypoints.min.js" />
     <Content Include="Content\js\magnific-popup-options.js" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\main2.js" />
     <Content Include="Content\js\modernizr-2.6.2.min.js" />
     <Content Include="Content\js\myScript.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
@@ -1358,9 +1379,12 @@
     <Content Include="Views\GiaSuOnline\Index.cshtml" />
     <Content Include="Views\GiaSuOnline\DanhGiaCuaNguoiHoc.cshtml" />
     <Content Include="Views\GiaSuOnline\ThanhToan.cshtml" />
+    <Content Include="Views\GiaSuOnline\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\fonts\poppins\" />
+    <Folder Include="Content\vendor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

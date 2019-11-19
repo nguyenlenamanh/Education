@@ -67,6 +67,7 @@ namespace Education_MVC.Controllers
                 db.Chats.Add(c);
                 db.SaveChanges();
                 return Json(new { hash = c.Hash},JsonRequestBehavior.AllowGet);
+                //return Json(new { hash = Guid.NewGuid(), JsonRequestBehavior.AllowGet });
             }
             
         }
@@ -76,6 +77,167 @@ namespace Education_MVC.Controllers
             LopHoc lh = db.LopHocs.SingleOrDefault(x => x.MaLH == idLH);
             if (lh.Chats.SingleOrDefault(x => x.MaNH == idNH) != null) return true;
             return false;
+        }
+
+        public bool checkTeachExists(int idLH, string idNH)
+        {
+            db = new GiaSuOnlineDB();
+            LopHoc lh = db.LopHocs.SingleOrDefault(p => p.MaLH == idLH && p.MaGS == idNH);
+            if (lh.Chats.SingleOrDefault(x => x.MaNH == idNH) != null) return true;
+            return false;
+        }
+
+        public ActionResult Chat(int id)
+        {
+            ApplicationDbContext dbIdentity = new ApplicationDbContext();
+            if(string.IsNullOrWhiteSpace(User.Identity.Name)) return Json("error", JsonRequestBehavior.AllowGet);
+
+            string idUser = dbIdentity.Users.Single(x => x.UserName == User.Identity.Name).Id;
+
+            db = new GiaSuOnlineDB();
+            Chat chat = db.Chats.Single(p => p.Hash == id);
+            if (chat == null) return Json("error", JsonRequestBehavior.AllowGet);
+
+            string studentID = chat.MaNH;
+
+            string teacherID = chat.LopHoc.GiaSu.MaGS;
+
+            if (studentID == idUser || teacherID == idUser)
+            {
+                if (studentID == idUser)
+                {
+                    ViewBag.Name = db.GiaSus.SingleOrDefault(p => p.MaGS == teacherID).TenGS;
+                    DisplayChatUser d = getChatUser(teacherID, chat.ChatID, id, true);
+                    ViewBag.CurrentChat = d;
+
+                    List<DisplayChatUser> displayChats = getAllChatOfStudent(studentID);
+                    //find and remove current chat of all chats because we already display current chat so dont need to display it twice
+                    if(displayChats != null && d != null)
+                    {
+                        var found = displayChats.SingleOrDefault(p => p.Hash == d.Hash);
+                        displayChats.Remove(found);
+                    }
+
+                    ViewBag.ChatWithID = teacherID;
+                    ViewBag.ListChats = displayChats;
+                }
+                else
+                {
+                    ViewBag.Name = db.NguoiHocs.SingleOrDefault(p => p.MaNH == studentID).TenNH;
+                    DisplayChatUser d = getChatUser(studentID, chat.ChatID, id, false);
+                    ViewBag.CurrentChat = d;
+
+                    List<DisplayChatUser> displayChats = getAllChatOfTeacher(teacherID);
+                    //find and remove current chat of all chats because we already display current chat so dont need to display it twice
+                    if(displayChats != null && d != null)
+                    {
+                        var found = displayChats.SingleOrDefault(p => p.Hash == d.Hash);
+                        displayChats.Remove(found);
+                    }
+
+                    ViewBag.ChatWithID = studentID;
+                    ViewBag.ListChats = displayChats;
+                }
+
+                ViewBag.UserID = idUser;
+                ViewBag.ClassID = id;
+                return View(chatContents(chat.ChatID));
+            }
+
+            return Json("error", JsonRequestBehavior.AllowGet);
+        }
+
+        public List<DisplayChatUser> getAllChatOfTeacher(string teacherID)
+        {
+            db = new GiaSuOnlineDB();
+
+            var gs = db.GiaSus.SingleOrDefault(p => p.MaGS == teacherID);
+
+            List<Chat> chats = new List<Chat>();
+
+            foreach(LopHoc lh in gs.LopHocs)
+            {
+                var chatCollections = db.Chats.Where(p => p.MaLH == lh.MaLH);
+
+                foreach(Chat c in chatCollections)
+                {
+                    chats.Add(c);
+                }
+            }
+            
+
+            List<DisplayChatUser> displaychats = new List<DisplayChatUser>();
+
+            if (chats.Count == 0) return null;
+
+            foreach (Chat c in chats)
+            {
+                string studentName = db.NguoiHocs.Single(p => p.MaNH == c.MaNH).TenNH;
+
+                var least = db.ChatDetails.Where(p => p.ChatID == c.ChatID).OrderByDescending(p => p.ChatDate).FirstOrDefault();
+
+                if (least == null) return null;
+
+                string content = least.Content;
+                DateTime date = least.ChatDate;
+
+                displaychats.Add(new DisplayChatUser { Hash = c.Hash, LastestChatDate = date, LastestContent = content, Name = studentName });
+            }
+
+            return displaychats;
+        }
+
+        public List<DisplayChatUser> getAllChatOfStudent(string studentID)
+        {
+            db = new GiaSuOnlineDB();
+
+            var student = db.NguoiHocs.SingleOrDefault(p => p.MaNH == studentID);
+
+            var chats = db.Chats.Where(p => p.MaNH == studentID);
+
+            List<DisplayChatUser> displaychats = new List<DisplayChatUser>();
+
+            foreach (Chat c in chats)
+            {
+                string teacherName = db.GiaSus.Single(p => p.MaGS == c.LopHoc.MaGS).TenGS;
+
+                var least = db.ChatDetails.Where(p => p.ChatID == c.ChatID).OrderByDescending(p => p.ChatDate).FirstOrDefault();
+
+                if (least == null) return null;
+
+                string content = least.Content;
+                DateTime date = least.ChatDate;
+
+                displaychats.Add(new DisplayChatUser { Hash = c.Hash, LastestChatDate = date, LastestContent = content, Name = teacherName });
+            }
+
+            return displaychats;
+        }
+
+        public DisplayChatUser getChatUser(string userID, int chatID, long hash, bool getTeacher = false) 
+        {
+            db = new GiaSuOnlineDB();
+
+            var least = db.ChatDetails.Where(p => p.ChatID == chatID).OrderByDescending(p => p.ChatDate).FirstOrDefault();
+
+            if (least == null) return null;
+
+            string name = "";
+
+            if (getTeacher) name = db.GiaSus.Single(p => p.MaGS == userID).TenGS;
+            else name = db.NguoiHocs.Single(p => p.MaNH == userID).TenNH;
+
+            var content = least.Content;
+            var date = least.ChatDate;
+
+            return new DisplayChatUser { Name = name, Hash = hash, LastestChatDate = date, LastestContent = content };
+        }
+
+        public List<ChatDetail> chatContents(int chatID)
+        {
+            db = new GiaSuOnlineDB();
+
+            return db.ChatDetails.Where(p => p.ChatID == chatID).OrderBy(p => p.ChatDate).ToList();
         }
     }
 }

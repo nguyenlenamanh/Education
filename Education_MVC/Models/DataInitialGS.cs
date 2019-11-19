@@ -10,19 +10,21 @@ namespace Education_MVC.Models
     {
         protected override void Seed(GiaSuOnlineDB context)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            string id = db.Users.SingleOrDefault(x => x.UserName == "admin@example.com").Id;
             GiaSu g = new GiaSu()
             {
                 TenGS = "ABC",
                 DiaChi = "Quan 12",
                 Email = "abc@gmail.com",
-                MaGS = "fe5d0669-552e-40ee-bf3f-cedabd3a5445",
+                MaGS = id,
                 SDT = "123456"
             };
             NguoiHoc nh = new NguoiHoc()
             {
                 TenNH = "Nguyen Van A",
                 Email = "nguyenvana@gmail.com",
-                MaNH   = "123456",
+                MaNH = "123456",
                 SDT = "0123456798",
             };
             context.GiaSus.Add(g);
@@ -54,7 +56,7 @@ namespace Education_MVC.Models
             };
             User u = new User()
             {
-                id = "fe5d0669-552e-40ee-bf3f-cedabd3a5445",
+                id = g.MaGS,
                 balance = 0
             };
             User u1 = new User()
