@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Education_MVC.App_Start;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Education_MVC
@@ -7,7 +8,7 @@ namespace Education_MVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new CustomErrorHandler());
         }
     }
 }

@@ -95,13 +95,13 @@ namespace Education_MVC.Controllers
         public ActionResult Chat(int id)
         {
             ApplicationDbContext dbIdentity = new ApplicationDbContext();
-            if (string.IsNullOrWhiteSpace(User.Identity.Name)) return Json("error", JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrWhiteSpace(User.Identity.Name)) return View("~/Views/Error.cshtml");
 
             string idUser = dbIdentity.Users.Single(x => x.UserName == User.Identity.Name).Id;
 
             db = new GiaSuOnlineDB();
             Chat chat = db.Chats.Single(p => p.Hash == id);
-            if (chat == null) return Json("error", JsonRequestBehavior.AllowGet);
+            if (chat == null) return View("~/Views/Error.cshtml");
 
             string studentID = chat.MaNH;
 
@@ -156,7 +156,7 @@ namespace Education_MVC.Controllers
                 // return View();
             }
 
-            return Json("error", JsonRequestBehavior.AllowGet);
+            return View("~/Views/Error.cshtml");
         }
 
         public List<DisplayChatUser> getAllChatOfTeacher(string teacherID)
