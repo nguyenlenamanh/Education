@@ -35,7 +35,7 @@ namespace Education_MVC.Models
                 MaGS = g.MaGS,
                 TenLH = "Lập trình hướng sự kiện",
                 Gia = 100000,
-                MoTa = "Lớp học về lập trình hướng sự kiện với công nghệ Java",
+                MoTa = "Lớp học về lập trình hướng sự kiện với công nghệ Java sẽ giúp cho các bạn nắm rõ hơn về cách thức lập trình cũng như tương tác sự kiện trong phần mềm, đi kèm với quá trình học tập sẽ là một dự án nhỏ, giúp chúng ta hiểu hơn về các vận hành thực tế của một dự án cũng như cách áp dụng những cái đã học vào thực tế sẽ như thế nào và gặp khó khăn ra sao. Sau khoá học này, tôi sẽ giúp các bạn giải quyết được việc đó",
                 Img = "java",
             };
             LopHoc lh1 = new LopHoc()
@@ -43,7 +43,7 @@ namespace Education_MVC.Models
                 MaGS = g.MaGS,
                 TenLH = "Toán cao cấp 1",
                 Gia = 200000,
-                MoTa = "Lớp học về toán cao cấp 1",
+                MoTa = "Lớp học về toán cao cấp 1, Là một môn học tiên khởi cho các học vấn về logic tính toán, giúp các bạn hiểu hơn về những thuật toán cũng như các phương pháp tính những phương trình bậc cao với cách thức giải quyết vô cùng phong phú, đảm bảo bạn sẽ rất thích thú với những gì mà ta sẽ học cũng như các áp dụng những kiến thức trên vào thực tế.",
                 Img = "math",
             };
             LopHoc lh2 = new LopHoc()
@@ -51,7 +51,7 @@ namespace Education_MVC.Models
                 MaGS = g.MaGS,
                 TenLH = "Lập trình hướng sự kiện",
                 Gia = 140000,
-                MoTa = "Lớp học về lập trình hướng sự kiện với công nghệ C#",
+                MoTa = "Lớp học về lập trình hướng sự kiện với công nghệ C# sẽ giúp cho các bạn nắm rõ hơn về cách thức lập trình cũng như tương tác sự kiện trong phần mềm, đi kèm với quá trình học tập sẽ là một dự án nhỏ, giúp chúng ta hiểu hơn về các vận hành thực tế của một dự án cũng như cách áp dụng những cái đã học vào thực tế sẽ như thế nào và gặp khó khăn ra sao. Sau khoá học này, tôi sẽ giúp các bạn giải quyết được việc đó",
                 Img = "c",
             };
             User u = new User()
