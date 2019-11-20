@@ -1,0 +1,358 @@
+﻿@model Education_MVC.Models.UserDetail
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="main">
+    <div data-reactroot="">
+        <div class="wrapper">
+            <header class="hd-wrap">
+                <div class="hd">
+                    <div class="hd-main">
+                        <div class="hd-trigger" id="J-msidebar-left-trigger">
+                        </div>
+                        <a class="hd-logo"></a>
+                        <div class="hd-panel">
+                            <img alt="" class="hd-thumb" id="J-msidebar-right-trigger" src="https://avatargarenanow-a.akamaihd.net/avatar/user/490/150/115150490.2197815516.jpg">
+                            <div class="hd-name">@Model.Name</div>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="hd-operation">Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="main">
+                <aside class="aside">
+                    <div class="aside-sidebar">
+                        @*<div class="aside-user">
+                            <div class="aside-user__info">
+                                <img src="https://avatargarenanow-a.akamaihd.net/avatar/user/490/150/115150490.2197815516.jpg" alt="" class="aside-user__info-thumb">
+                                <div class="aside-user__info-desc">
+                                    
+                                    <div>Số dư hiện tại 115150490</div>
+                                   
+                                </div>
+                            </div>
+                            
+                        </div>*@
+                        <div class="aside-user">
+                            <a href="#" class="aside-panel__item">
+                                <div class="aside-panel__icon--password"></div>
+                                <div class="aside-panel__txt">
+                                    <!-- react-text: 523 -->Thay đổi
+                                    <!-- /react-text -->
+                                    <!-- react-text: 524 -->
+                                    <!-- /react-text -->
+                                    <!-- react-text: 525 -->Mật khẩu
+                                    <!-- /react-text -->
+                                </div>
+                            </a>
+                            <div class="aside-panel__item">
+                                <div class="aside-panel__icon--password"></div>
+                                <input type="text" value="@String.Format("{0:#.#}",Model.Balance.ToString())" style="width:100px; border:none;" />
+                                <div class="aside-panel__operation">Hiển thị số dư</div>                                
+                            </div>
+                            <a href="#" class="aside-panel__item">
+                                <div class="aside-panel__icon--mobile"></div>
+                                <div class="aside-panel__txt">+84 ****8283</div>
+                                <div class="aside-panel__operation">Thay đổi</div>
+                            </a>
+                            <!-- react-empty: 530 -->
+                            <!-- react-empty: 531 -->
+                        </div>
+                    </div>
+                </aside>
+                <div class="content">
+                    <!-- react-empty: 533 -->
+                    <div class="content-item">
+                        <div class="content-item__title">MỨC ĐỘ BẢO MẬT</div>
+                        <div class="content-item__main">
+                            <div class="securitylv">
+                                <div class="securitylv-gauge">
+                                    <div class="securitylv-gauge__svg-wrap">
+                                        <svg class="securitylv-gauge__svg" viewBox="0 0 125 125" preserveAspectRatio="xMinYMin">
+                                            <circle class="securitylv-gauge__bg" cx="50%" cy="50%" r="43%" stroke-width="17"></circle>
+                                            <circle class="securitylv-gauge__arc" cx="50%" cy="50%" r="43%" stroke-width="17" stroke="#00D26A" stroke-dasharray="340,337"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="securitylv-gauge__txt">CAO</div>
+                                </div>
+                                <div class="securitylv-content">
+                                    <div class="securitylv-warn">
+                                        <a href="#" class="securitylv-warn__item">
+                                            <div class="securitylv-normal__icon"></div>
+                                            <div class="securitylv-warn__txt">Tuyệt quá! Tài khoản của bạn đã được bảo mật mức cao!</div>
+                                        </a>
+                                    </div>
+                                    <div id="J-slv-nor-wrap">
+                                        <div class="securitylv-normal" id="J-slv-nor">
+                                            <div class="securitylv-normal__item">
+                                                <div class="securitylv-normal__icon"></div>
+                                                <div class="securitylv-normal__txt">Mật khẩu của bạn rất mạnh.</div>
+                                            </div>
+                                            <div class="securitylv-normal__item">
+                                                <div class="securitylv-normal__icon"></div>
+                                                <div class="securitylv-normal__txt">Địa chỉ email đã được xác nhận.</div>
+                                            </div>
+                                            <div class="securitylv-normal__item">
+                                                <div class="securitylv-normal__icon"></div>
+                                                <div class="securitylv-normal__txt">Tài khoản của bạn đã liên kết với số điện thoại (+84 ****8283).</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <div class="content-item__title oplog-title J-oplog-trigger">
+                            <div class="oplog-title__txt">HOẠT ĐỘNG TÀI KHOẢN</div>
+                            <div class="oplog-title__icon"></div>
+                        </div>
+                        <div class="oplog-wrap J-oplog-wrap">
+                            <div class="content-item__main J-oplog">
+                                <div class="oplog">
+                                    <div class="oplog-panel">
+
+                                        <div class="oplog-data">
+                                            <div class="oplog-table">
+                                                <div class="oplog-table__thead">
+                                                    <div class="oplog-table__row">
+                                                        <div class="oplog-table__th oplog-table__date">Ngày Tháng</div>
+                                                        <div class="oplog-table__th oplog-table__country">Quốc Gia</div>
+                                                        <div class="oplog-table__th oplog-table__ip">IP</div>
+                                                        <div class="oplog-table__th oplog-table__opsrc">Hoạt động</div>
+                                                    </div>
+                                                </div>
+                                                <div class="oplog-table__tbody">
+                                                    <div class="oplog-table__row oplog-table__tdrow">
+                                                        <div class="oplog-table__td oplog-table__date">2019-08-02 10:51:24</div>
+                                                        <div class="oplog-table__td oplog-table__country">VN</div>
+                                                        <div class="oplog-table__td oplog-table__ip">113.161.60.222</div>
+                                                        <div class="oplog-table__td oplog-table__opsrc">Thay đổi mật khẩu</div>
+                                                    </div>
+                                                    <div class="oplog-table__row oplog-table__tdrow">
+                                                        <div class="oplog-table__td oplog-table__date">2019-01-02 23:57:43</div>
+                                                        <div class="oplog-table__td oplog-table__country">VN</div>
+                                                        <div class="oplog-table__td oplog-table__ip">14.186.235.131</div>
+                                                        <div class="oplog-table__td oplog-table__opsrc">Thay đổi mật khẩu</div>
+                                                    </div>
+                                                    <div class="oplog-table__row oplog-table__tdrow">
+                                                        <div class="oplog-table__td oplog-table__date">2019-01-02 23:55:57</div>
+                                                        <div class="oplog-table__td oplog-table__country">VN</div>
+                                                        <div class="oplog-table__td oplog-table__ip">14.186.235.131</div>
+                                                        <div class="oplog-table__td oplog-table__opsrc">Cài đặt Authenticator</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="oplog-list">
+                                                <div class="oplog-list__row">
+                                                    <div class="oplog-list__row-info">
+                                                        <div class="oplog-list__row-l">Thay đổi mật khẩu</div>
+                                                        <div class="oplog-list__row-r">2019-08-02 10:51:24</div>
+                                                    </div>
+                                                    <div class="oplog-list__row-location">
+                                                        <!-- react-text: 613 -->113.161.60.222
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 614 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 615 -->(VN)
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                                <div class="oplog-list__row">
+                                                    <div class="oplog-list__row-info">
+                                                        <div class="oplog-list__row-l">Thay đổi mật khẩu</div>
+                                                        <div class="oplog-list__row-r">2019-01-02 23:57:43</div>
+                                                    </div>
+                                                    <div class="oplog-list__row-location">
+                                                        <!-- react-text: 621 -->14.186.235.131
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 622 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 623 -->(VN)
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                                <div class="oplog-list__row">
+                                                    <div class="oplog-list__row-info">
+                                                        <div class="oplog-list__row-l">Cài đặt Authenticator</div>
+                                                        <div class="oplog-list__row-r">2019-01-02 23:55:57</div>
+                                                    </div>
+                                                    <div class="oplog-list__row-location">
+                                                        <!-- react-text: 629 -->14.186.235.131
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 630 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 631 -->(VN)
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="oplog-more">
+                                            <div class="oplog-more__link">
+                                                <div class="oplog-more__link-txt">Xem thêm</div>
+                                                <div class="oplog-more__link-icon"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <div class="content-item__title oplog-title J-oplog-trigger">
+                                <div class="oplog-title__txt">LỊCH SỬ ĐĂNG NHẬP</div>
+                                <div class="oplog-title__icon"></div>
+                            </div>
+                            <div class="oplog-wrap J-oplog-wrap">
+                                <div class="content-item__main J-oplog">
+                                    <div class="oplog">
+                                        <div class="oplog-panel">
+
+                                            <div class="oplog-data">
+                                                <div class="oplog-table">
+                                                    <div class="oplog-table__thead">
+                                                        <div class="oplog-table__row">
+                                                            <div class="oplog-table__th oplog-table__date">Ngày Tháng</div>
+                                                            <div class="oplog-table__th oplog-table__country">Quốc Gia</div>
+                                                            <div class="oplog-table__th oplog-table__ip">IP</div>
+                                                            <div class="oplog-table__th oplog-table__opsrc">Nguồn</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="oplog-table__tbody">
+                                                        <div class="oplog-table__row oplog-table__tdrow">
+                                                            <div class="oplog-table__td oplog-table__date">2019-11-20 13:18:12</div>
+                                                            <div class="oplog-table__td oplog-table__country">VN</div>
+                                                            <div class="oplog-table__td oplog-table__ip">14.186.205.15</div>
+                                                            <div class="oplog-table__td oplog-table__opsrc">Garena PC</div>
+                                                        </div>
+                                                        <div class="oplog-table__row oplog-table__tdrow">
+                                                            <div class="oplog-table__td oplog-table__date">2019-11-20 00:51:49</div>
+                                                            <div class="oplog-table__td oplog-table__country">VN</div>
+                                                            <div class="oplog-table__td oplog-table__ip">14.186.205.15</div>
+                                                            <div class="oplog-table__td oplog-table__opsrc">Garena PC</div>
+                                                        </div>
+                                                        <div class="oplog-table__row oplog-table__tdrow">
+                                                            <div class="oplog-table__td oplog-table__date">2019-11-19 17:55:22</div>
+                                                            <div class="oplog-table__td oplog-table__country">VN</div>
+                                                            <div class="oplog-table__td oplog-table__ip">14.186.205.15</div>
+                                                            <div class="oplog-table__td oplog-table__opsrc">Garena PC</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="oplog-list">
+                                                    <div class="oplog-list__row">
+                                                        <div class="oplog-list__row-info">
+                                                            <div class="oplog-list__row-l">2019-11-20 13:18:12</div>
+                                                            <div class="oplog-list__row-r">Garena PC</div>
+                                                        </div>
+                                                        <div class="oplog-list__row-location">
+                                                            <!-- react-text: 676 -->14.186.205.15
+                                                            <!-- /react-text -->
+                                                            <!-- react-text: 677 -->
+                                                            <!-- /react-text -->
+                                                            <!-- react-text: 678 -->(VN)
+                                                            <!-- /react-text -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oplog-list__row">
+                                                        <div class="oplog-list__row-info">
+                                                            <div class="oplog-list__row-l">2019-11-20 00:51:49</div>
+                                                            <div class="oplog-list__row-r">Garena PC</div>
+                                                        </div>
+                                                        <div class="oplog-list__row-location">
+                                                            <!-- react-text: 684 -->14.186.205.15
+                                                            <!-- /react-text -->
+                                                            <!-- react-text: 685 -->
+                                                            <!-- /react-text -->
+                                                            <!-- react-text: 686 -->(VN)
+                                                            <!-- /react-text -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="oplog-list__row">
+                                                        <div class="oplog-list__row-info">
+                                                            <div class="oplog-list__row-l">2019-11-19 17:55:22</div>
+                                                            <div class="oplog-list__row-r">Garena PC</div>
+                                                        </div>
+                                                        <div class="oplog-list__row-location">
+                                                            <!-- react-text: 692 -->14.186.205.15
+                                                            <!-- /react-text -->
+                                                            <!-- react-text: 693 -->
+                                                            <!-- /react-text -->
+                                                            <!-- react-text: 694 -->(VN)
+                                                            <!-- /react-text -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wrapper__mask" id="J-wrapper-mask"></div>
+                </div>
+
+                <div class="msidebar-right-wrap" id="J-msidebar-right">
+                    <div class="msidebar-right">
+                        <div class="msidebar-right__top">
+                            <div class="msidebar-user">
+                                <div class="msidebar-user__bg" style="background-image: url(&quot;https://avatargarenanow-a.akamaihd.net/avatar/user/490/150/115150490.2197815516.jpg&quot;);"></div>
+                                <div class="msidebar-user-i">
+                                    <div class="msidebar-user__info">
+                                        <img alt="" class="msidebar-user__info-thumb" src="https://avatargarenanow-a.akamaihd.net/avatar/user/490/150/115150490.2197815516.jpg">
+                                        <div class="msidebar-user__info-desc">
+                                            <div class="msidebar-user__info-name">phantuantai1234</div>
+                                            <div class="msidebar-user__info-location">115150490</div>
+                                            <div class="msidebar-user__info-signature">Bạn đang nghĩ gì?</div>
+                                        </div>
+                                    </div>
+                                    <div class="msidebar-user__state">
+                                        <div class="msidebar-user__state-item">
+                                            <div class="msidebar-user__state-icon--lv"></div>
+                                            <div class="msidebar-user__state-txt">137</div>
+                                        </div>
+                                        <div class="msidebar-user__state-item">
+                                            <div class="msidebar-user__state-icon--diamond"></div>
+                                            <div class="msidebar-user__state-txt"></div>
+                                        </div>
+                                        <div class="msidebar-user__state-item">
+                                            <div class="msidebar-user__state-icon--shell"></div>
+                                            <div class="msidebar-user__state-txt">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="msidebar-panel">
+                                <a href="#" class="msidebar-panel__item">
+                                    <div class="msidebar-panel__icon msidebar-panel__icon--password"></div>
+                                    <div class="msidebar-panel__txt">
+                                        <!-- react-text: 216 -->Thay đổi
+                                        <!-- /react-text -->
+                                        <!-- react-text: 217 -->
+                                        <!-- /react-text -->
+                                        <!-- react-text: 218 -->Mật khẩu
+                                        <!-- /react-text -->
+                                    </div>
+                                </a>
+                                <a href="#" class="msidebar-panel__item">
+                                    <div class="msidebar-panel__icon msidebar-panel__icon--mobile"></div>
+                                    <div class="msidebar-panel__txt">+84 ****8283</div>
+                                    <div class="msidebar-panel__operation">Thay đổi</div>
+                                </a>
+                                <!-- react-empty: 337 -->
+                                <!-- react-empty: 338 -->
+                            </div>
+                        </div><a href="#" class="msidebar-operation">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

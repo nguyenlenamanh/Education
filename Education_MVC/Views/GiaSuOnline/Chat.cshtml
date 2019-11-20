@@ -1,9 +1,7 @@
 ﻿@using Education_MVC.Models;
 
-@model List<ChatDetail>
-
 @{
-    Layout = null;
+   Layout = null;
 }
 
 <!DOCTYPE html>
@@ -51,7 +49,7 @@
                     <div class="col-lg-3">
                         <div class="au-message-list" style="height: 72vh;">
                             <div class="au-message__item unread" onclick="changeChat(@((ViewBag.CurrentChat as DisplayChatUser).Hash))">
-                                @if (ViewBag.CurrentChat != null)
+                                @if ((ViewBag.CurrentChat as DisplayChatUser).Hash != -1)
                                 {
                                     <div class="au-message__item-inner">
                                         <div class="au-message__item-text">
@@ -71,7 +69,7 @@
                                     </div>
                                 }
                             </div>
-                            @if (ViewBag.ListChats != null)
+                            @if (ViewBag.ListChat != null &&(ViewBag.ListChats as List<DisplayChatUser>).Count > 0)
                             {
                                 foreach (DisplayChatUser p in (ViewBag.ListChats as List<DisplayChatUser>))
                                 {
@@ -209,7 +207,7 @@
                                             </div>
                                         </div>-->
 
-                                        @foreach (var row in Model)
+                                        @foreach (var row in (ViewBag.ChatContents as List<ChatDetail>))
                                         {
                                             if (row.ChatUser == ViewBag.UserID)
                                             {

@@ -1,40 +1,46 @@
 ﻿@model Education_MVC.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_LayoutLoginAndRegister.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
+<!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title" style="font-family:'Times New Roman';">Đăng ký tài khoản</h2>
+                        <form method="POST" class="register-form" id="register-form" action="/Account/Register">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label for="Email"><i class="zmdi zmdi-email"></i></label>
+                                @*<input type="email" name="email" id="email" placeholder="Your Email">*@
+                                <input class="form-control" data-val="true" data-val-email="Sai định dạng Email" data-val-required="The Email field is required." id="Email" name="Email" type="text" value="" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="Password"><i class="zmdi zmdi-lock"></i></label>
+                                @*<input type="password" name="pass" id="pass" placeholder="Password">*@
+                                <input class="form-control" placeholder="Mật khẩu" data-val="true" data-val-length="Mật khẩu ít nhất phải 6 kí tự" data-val-length-max="100" data-val-length-min="6" data-val-required="Vui lòng nhập mật khẩu" id="Password" name="Password" type="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="ConfirmPassword"><i class="zmdi zmdi-lock-outline"></i></label>
+                                @*<input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password">*@
+                                <input class="form-control" data-val="true" data-val-length="Mật khẩu ít nhất phải 6 kí tự" data-val-length-max="100" data-val-length-min="6" data-val-required="Vui lòng nhập mật khẩ" id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="Xác nhận mật khẩu">
+                            </div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Đăng ký" style="font-family:'Times New Roman';">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="~/Content/LoginAndRegister/images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="/Account/Login" class="signup-image-link">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

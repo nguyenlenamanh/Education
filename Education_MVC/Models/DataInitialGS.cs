@@ -62,7 +62,7 @@ namespace Education_MVC.Models
             User u1 = new User()
             {
                 id = "123456",
-                balance = 500000
+                balance = 0 
             };
             DanhGiaCuaNguoiHoc dg = new DanhGiaCuaNguoiHoc()
             {

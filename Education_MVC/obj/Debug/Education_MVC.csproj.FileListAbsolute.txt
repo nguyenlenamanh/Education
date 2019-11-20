@@ -167,7 +167,6 @@ C:\Users\tn\Desktop\Education\Education_MVC\bin\Microsoft.Owin.Security.Twitter.
 C:\Users\tn\Desktop\Education\Education_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.dll
 C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.pdb
-C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.csprojResolveAssemblyReference.cache
 C:\Users\nguye\Desktop\edu\Education\Education_MVC\obj\Debug\Education_MVC.csprojResolveAssemblyReference.cache
 C:\Users\nguye\Desktop\edu\Education\Education_MVC\obj\Debug\Education_MVC.dll
 C:\Users\nguye\Desktop\edu\Education\Education_MVC\obj\Debug\Education_MVC.pdb
@@ -256,3 +255,4 @@ C:\Users\nguye\Desktop\edu\Education\Education_MVC\bin\Microsoft.Owin.Security.O
 C:\Users\nguye\Desktop\edu\Education\Education_MVC\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\nguye\Desktop\edu\Education\Education_MVC\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\nguye\Desktop\edu\Education\Education_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\tn\Desktop\Education\Education_MVC\obj\Debug\Education_MVC.csprojResolveAssemblyReference.cache

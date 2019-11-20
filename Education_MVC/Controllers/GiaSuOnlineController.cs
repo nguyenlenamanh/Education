@@ -48,7 +48,8 @@ namespace Education_MVC.Controllers
             else
             {
                 User gsUser = db.Users.Single(x => x.id == lh.GiaSu.MaGS);
-                u.balance = u.balance - (hocPhi + hocPhi * 0.1);
+                User u1 = db.Users.Single(x => x.id == idUser);
+                u1.balance = u.balance - (hocPhi + hocPhi * 0.1);
                 gsUser.balance = gsUser.balance + (hocPhi - hocPhi * 0.1);
 
                 Chat c = new Chat()
@@ -87,10 +88,14 @@ namespace Education_MVC.Controllers
             return false;
         }
 
+
+
+
+
         public ActionResult Chat(int id)
         {
             ApplicationDbContext dbIdentity = new ApplicationDbContext();
-            if(string.IsNullOrWhiteSpace(User.Identity.Name)) return Json("error", JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrWhiteSpace(User.Identity.Name)) return Json("error", JsonRequestBehavior.AllowGet);
 
             string idUser = dbIdentity.Users.Single(x => x.UserName == User.Identity.Name).Id;
 
@@ -108,18 +113,21 @@ namespace Education_MVC.Controllers
                 {
                     ViewBag.Name = db.GiaSus.SingleOrDefault(p => p.MaGS == teacherID).TenGS;
                     DisplayChatUser d = getChatUser(teacherID, chat.ChatID, id, true);
-                    ViewBag.CurrentChat = d;
+                    if (d != null) ViewBag.CurrentChat = d;
+                    else ViewBag.CurrentChat = new DisplayChatUser() { Hash = -1 };
 
                     List<DisplayChatUser> displayChats = getAllChatOfStudent(studentID);
                     //find and remove current chat of all chats because we already display current chat so dont need to display it twice
-                    if(displayChats != null && d != null)
+                    if (displayChats != null && d != null)
                     {
                         var found = displayChats.SingleOrDefault(p => p.Hash == d.Hash);
                         displayChats.Remove(found);
                     }
 
                     ViewBag.ChatWithID = teacherID;
-                    ViewBag.ListChats = displayChats;
+                    if (displayChats != null)
+                        ViewBag.ListChats = displayChats;
+                    else ViewBag.ListChats = new List<DisplayChatUser>();
                 }
                 else
                 {
@@ -129,7 +137,7 @@ namespace Education_MVC.Controllers
 
                     List<DisplayChatUser> displayChats = getAllChatOfTeacher(teacherID);
                     //find and remove current chat of all chats because we already display current chat so dont need to display it twice
-                    if(displayChats != null && d != null)
+                    if (displayChats != null && d != null)
                     {
                         var found = displayChats.SingleOrDefault(p => p.Hash == d.Hash);
                         displayChats.Remove(found);
@@ -141,7 +149,11 @@ namespace Education_MVC.Controllers
 
                 ViewBag.UserID = idUser;
                 ViewBag.ClassID = id;
-                return View(chatContents(chat.ChatID));
+
+                ViewBag.ChatContents = chatContents(chat.ChatID);
+
+                return View();
+                // return View();
             }
 
             return Json("error", JsonRequestBehavior.AllowGet);
@@ -155,16 +167,16 @@ namespace Education_MVC.Controllers
 
             List<Chat> chats = new List<Chat>();
 
-            foreach(LopHoc lh in gs.LopHocs)
+            foreach (LopHoc lh in gs.LopHocs)
             {
                 var chatCollections = db.Chats.Where(p => p.MaLH == lh.MaLH);
 
-                foreach(Chat c in chatCollections)
+                foreach (Chat c in chatCollections)
                 {
                     chats.Add(c);
                 }
             }
-            
+
 
             List<DisplayChatUser> displaychats = new List<DisplayChatUser>();
 
@@ -178,7 +190,8 @@ namespace Education_MVC.Controllers
 
                 if (least == null) return null;
 
-                string content = least.Content;
+                string content = StringCipher.Decrypt(least.Content,least.ChatUser);
+                //string content = least.Content;
                 DateTime date = least.ChatDate;
 
                 displaychats.Add(new DisplayChatUser { Hash = c.Hash, LastestChatDate = date, LastestContent = content, Name = studentName });
@@ -205,7 +218,8 @@ namespace Education_MVC.Controllers
 
                 if (least == null) return null;
 
-                string content = least.Content;
+                string content = StringCipher.Decrypt(least.Content, least.ChatUser);
+                //string content = least.Content;
                 DateTime date = least.ChatDate;
 
                 displaychats.Add(new DisplayChatUser { Hash = c.Hash, LastestChatDate = date, LastestContent = content, Name = teacherName });
@@ -214,7 +228,7 @@ namespace Education_MVC.Controllers
             return displaychats;
         }
 
-        public DisplayChatUser getChatUser(string userID, int chatID, long hash, bool getTeacher = false) 
+        public DisplayChatUser getChatUser(string userID, int chatID, long hash, bool getTeacher = false)
         {
             db = new GiaSuOnlineDB();
 
@@ -227,7 +241,9 @@ namespace Education_MVC.Controllers
             if (getTeacher) name = db.GiaSus.Single(p => p.MaGS == userID).TenGS;
             else name = db.NguoiHocs.Single(p => p.MaNH == userID).TenNH;
 
-            var content = least.Content;
+            //var content = least.Content;
+            string content = StringCipher.Decrypt(least.Content, least.ChatUser);
+            //string content = least.Content;
             var date = least.ChatDate;
 
             return new DisplayChatUser { Name = name, Hash = hash, LastestChatDate = date, LastestContent = content };
@@ -237,7 +253,16 @@ namespace Education_MVC.Controllers
         {
             db = new GiaSuOnlineDB();
 
-            return db.ChatDetails.Where(p => p.ChatID == chatID).OrderBy(p => p.ChatDate).ToList();
+            List<ChatDetail> test = db.ChatDetails.Where(p => p.ChatID == chatID).OrderBy(p => p.ChatDate).ToList().Select(x => new ChatDetail
+            {
+                ChatDate = x.ChatDate,
+                ChatDetailID = x.ChatDetailID,
+                ChatID = x.ChatID,
+                ChatUser = x.ChatUser,
+                Content = StringCipher.Decrypt(x.Content, x.ChatUser)
+            }).ToList();
+
+            return test;
         }
     }
 }
