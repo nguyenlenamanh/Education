@@ -1515,6 +1515,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\GiaSuOnline\Policy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -264,5 +264,10 @@ namespace Education_MVC.Controllers
 
             return test;
         }
+
+        public ActionResult Policy()
+        {
+            return View();
+        }
     }
 }
