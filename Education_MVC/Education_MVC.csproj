@@ -258,6 +258,10 @@
     <Content Include="Content\images\avatar.jpg" />
     <Content Include="Content\images\about-img-1.jpg" />
     <Content Include="Content\images\about-img-2.jpg" />
+    <Content Include="Content\images\Avatar\14233163_763502827123474_2535489958922617802_n.jpg" />
+    <Content Include="Content\images\Avatar\318837.jpg" />
+    <Content Include="Content\images\Avatar\39453511_2334835580077187_84974201374507008_n.jpg" />
+    <Content Include="Content\images\Avatar\48341290.jpg" />
     <Content Include="Content\images\bg-title-01.jpg" />
     <Content Include="Content\images\bg-title-02.jpg" />
     <Content Include="Content\images\blog-1.jpg" />
@@ -1516,6 +1520,7 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\GiaSuOnline\Policy.cshtml" />
+    <Content Include="Views\GiaSuOnline\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
