@@ -207,6 +207,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GiaSuOnlineController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -356,6 +357,7 @@
     <Content Include="Content\User\js\index.77933e9e.js" />
     <Content Include="Content\User\js\jquery-3.1.1.min.js" />
     <Content Include="Content\User\js\jsencrypt.min.js" />
+    <Content Include="Error.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1527,6 +1529,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\GiaSuOnline\Policy.cshtml" />
     <Content Include="Views\GiaSuOnline\AboutUs.cshtml" />
+    <Content Include="Views\Error\ErrorAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
