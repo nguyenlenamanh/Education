@@ -303,6 +303,12 @@
     <Content Include="Content\images\person2.jpg" />
     <Content Include="Content\images\person3.jpg" />
     <Content Include="Content\images\person4.jpg" />
+    <Content Include="Content\images\Training\GiaSu.png" />
+    <Content Include="Content\images\Training\TienDo.png" />
+    <Content Include="Content\images\Training\TuHoc.png" />
+    <Content Include="Content\images\Training\LayCanBan.png" />
+    <Content Include="Content\images\Training\ThucTe.png" />
+    <Content Include="Content\images\Training\KienThuc.png" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\google_map.js" />
     <Content Include="Content\js\jquery.countTo.js" />
